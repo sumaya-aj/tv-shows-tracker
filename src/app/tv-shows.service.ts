@@ -14,6 +14,11 @@ export class TvShowsService {
     return this.http.get<TvShow[]>("https://www.episodate.com/api/search").pipe(
       map((response: any) => response.tv_shows)
     );
+  }
 
+  searchTvShowsByName(searchTerm: string): Observable<TvShow[]> {
+    return this.http.get<TvShow[]>(`https://www.episodate.com/api/search?q=${searchTerm}&page=1`).pipe(
+      map((response: any) => response.tv_shows)
+    );
   }
 }

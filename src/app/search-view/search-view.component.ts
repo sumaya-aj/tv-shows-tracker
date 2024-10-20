@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {TvShowTableComponent} from '../tv-show-table/tv-show-table.component';
+import { Observable } from 'rxjs';
+import { TvShow } from '../interfaces/tv-show.interface';
+import { TvShowsService } from '../tv-shows.service';
 
 @Component({
   selector: 'app-search-view',
@@ -10,5 +13,12 @@ import {TvShowTableComponent} from '../tv-show-table/tv-show-table.component';
   styleUrls: ['./search-view.component.css']
 })
 export class SearchViewComponent {
-
+  filteredShows: TvShow[] = [];
+  constructor(private tvShowsService: TvShowsService) {
+  }
+  searchTvShows(showName: string) {
+    this.tvShowsService.searchTvShowsByName(showName).subscribe((response: any) => {
+      this.filteredShows = response;
+    })
+;  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TvShowsService } from '../tv-shows.service';
 import { TvShow } from '../interfaces/tv-show.interface';
@@ -14,21 +14,14 @@ import { YearOnlyPipe } from '../pipes/year-only.pipe';
 })
 export class TvShowTableComponent implements OnInit {
   
-  //tvShows: TvShow[] = [];
-  tvShows$!: Observable<TvShow[]>;
+  @Input() shows!: TvShow[];
+  tvShows: TvShow[] = [];
   
-  constructor(private tvShowsService: TvShowsService) {
-    // tvShowsService.getTvShows().subscribe((res: TvShow[])=>{
-    //   this.tvShows = res;
-    // });
-    //this.tvShows$ = tvShowsService.getTvShows();
-  }
+  constructor(private tvShowsService: TvShowsService) { }
+
   ngOnInit(): void {
-    this.tvShows$ = this.tvShowsService.getTvShows();
-    this.tvShows$.subscribe(data => {
-      console.log('TV Shows Data:', data);
+    this.tvShowsService.getTvShows().subscribe((res: TvShow[])=>{
+      this.tvShows = res;
     });
   }
-
-
 }
