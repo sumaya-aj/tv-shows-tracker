@@ -16,7 +16,8 @@ export class SearchViewComponent {
   filteredShows: TvShow[] = [];
   constructor(private tvShowsService: TvShowsService) {
   }
-  searchTvShows(showName: string) {
+  searchTvShows(showName: string, event: Event) {
+    event.preventDefault();
     this.tvShowsService.searchTvShowsByName(showName).subscribe((response: any) => {
       this.filteredShows = response;
     })

@@ -15,13 +15,13 @@ import { YearOnlyPipe } from '../pipes/year-only.pipe';
 export class TvShowTableComponent implements OnInit {
   
   @Input() shows!: TvShow[];
-  tvShows: TvShow[] = [];
+  //tvShows: TvShow[] = [];
   
   constructor(private tvShowsService: TvShowsService) { }
 
   ngOnInit(): void {
-    this.tvShowsService.getTvShows().subscribe((res: TvShow[])=>{
-      this.tvShows = res;
-    });
+    // this.tvShowsService.getTvShows().subscribe((res: TvShow[])=>{
+    //   this.tvShows = res;
+    // });
   }
 }
